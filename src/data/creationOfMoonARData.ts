@@ -68,16 +68,6 @@ const creationOfMoonARData = {
       data: {
         items: [
           {
-            type: "video",
-            src: "video/AR-CreationOfMoon-Demo.mp4",
-            alt: "AR Demo Video",
-          },
-          {
-            type: "video",
-            src: "video/AR-CreationOfMoon-Video-1.mov",
-            alt: "AR Gameplay Clip",
-          },
-          {
             type: "image",
             src: "image/AR-CreationOfMoon-Screenshot-1.png",
             alt: "Storyboard Screenshot",
@@ -91,6 +81,16 @@ const creationOfMoonARData = {
             type: "image",
             src: "image/AR-CreationOfMoon-Screenshot-3.jpeg",
             alt: "UI Interface Screenshot",
+          },
+          {
+            type: "youtube",
+            src: "video/AR-CreationOfMoon-Demo.mp4",
+            alt: "AR Demo Video",
+          },
+          {
+            type: "video",
+            src: "video/AR-CreationOfMoon-Video-1.mov",
+            alt: "AR Gameplay Clip",
           },
         ],
       } as MediaBlockData,

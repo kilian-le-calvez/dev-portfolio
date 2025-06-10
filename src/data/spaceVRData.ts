@@ -65,11 +65,6 @@ const spaceVRData = {
       data: {
         items: [
           {
-            type: "video",
-            src: "video/SpaceVR-Demo.mp4",
-            alt: "SpaceVR Demo Video",
-          },
-          {
             type: "image",
             src: "image/SpaceVR-Screenshot-1.png",
             alt: "SpaceVR Screenshot 1",
@@ -78,6 +73,11 @@ const spaceVRData = {
             type: "image",
             src: "image/SpaceVR-Screenshot-2.png",
             alt: "SpaceVR Screenshot 2",
+          },
+          {
+            type: "youtube",
+            src: "video/SpaceVR-Demo.mp4",
+            alt: "SpaceVR Demo Video",
           },
         ],
       } as MediaBlockData,

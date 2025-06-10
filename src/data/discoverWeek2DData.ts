@@ -86,14 +86,14 @@ const part250123 = [
     data: {
       items: [
         {
-          type: "youtube",
-          src: "https://www.youtube.com/watch?v=Lk1i1hLuwlA",
-          alt: "Top-down shooter video",
-        },
-        {
           type: "image",
           src: "image/25-01-23-Screenshot-1.png",
           alt: "Top-down shooter screenshot",
+        },
+        {
+          type: "youtube",
+          src: "https://www.youtube.com/watch?v=Lk1i1hLuwlA",
+          alt: "Top-down shooter video",
         },
       ],
     } as MediaBlockData,
@@ -134,14 +134,14 @@ const part260123 = [
     data: {
       items: [
         {
-          type: "youtube",
-          src: "https://www.youtube.com/watch?v=wLTp-upcmjI",
-          alt: "Platformer evolution video",
-        },
-        {
           type: "image",
           src: "image/26-01-23-Screenshot-1.png",
           alt: "Platformer evolution screenshot",
+        },
+        {
+          type: "youtube",
+          src: "https://www.youtube.com/watch?v=wLTp-upcmjI",
+          alt: "Platformer evolution video",
         },
       ],
     } as MediaBlockData,
@@ -182,14 +182,14 @@ const part270123 = [
     data: {
       items: [
         {
-          type: "youtube",
-          src: "https://www.youtube.com/watch?v=2Lm6NammZE0",
-          alt: "Fruit ninja spear game video",
-        },
-        {
           type: "image",
           src: "image/27-01-23-Screenshot-1.png",
           alt: "Fruit ninja spear game screenshot",
+        },
+        {
+          type: "youtube",
+          src: "https://www.youtube.com/watch?v=2Lm6NammZE0",
+          alt: "Fruit ninja spear game video",
         },
       ],
     } as MediaBlockData,
@@ -230,14 +230,14 @@ const part280123 = [
     data: {
       items: [
         {
-          type: "youtube",
-          src: "https://www.youtube.com/watch?v=AyFgsfn3uXw",
-          alt: "Multi-level platformer video",
-        },
-        {
           type: "image",
           src: "image/28-01-23-Screenshot-1.png",
           alt: "Multi-level platformer screenshot",
+        },
+        {
+          type: "youtube",
+          src: "https://www.youtube.com/watch?v=AyFgsfn3uXw",
+          alt: "Multi-level platformer video",
         },
       ],
     } as MediaBlockData,
@@ -281,14 +281,14 @@ const part290123 = [
     data: {
       items: [
         {
-          type: "youtube",
-          src: "https://www.youtube.com/watch?v=_BzmqtTIYZc",
-          alt: "Cozy platformer video",
-        },
-        {
           type: "image",
           src: "image/29-01-23-Screenshot-1.png",
           alt: "Cozy platformer screenshot",
+        },
+        {
+          type: "youtube",
+          src: "https://www.youtube.com/watch?v=_BzmqtTIYZc",
+          alt: "Cozy platformer video",
         },
       ],
     } as MediaBlockData,

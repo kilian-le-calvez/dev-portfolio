@@ -1,6 +1,6 @@
 import { Video, Image } from "lucide-react";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import YouTube, { YouTubeEvent } from "react-youtube";
+import YouTube, { YouTubeEvent, YouTubeProps } from "react-youtube";
 
 function extractYouTubeId(url: string) {
   const regExp =

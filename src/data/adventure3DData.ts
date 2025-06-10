@@ -77,6 +77,18 @@ const adventure3DData = {
             caption: "First playable area with destructible objects",
           },
           {
+            type: "image",
+            src: "image/Adventure3D-Screenshot-2.png",
+            alt: "Screenshot 2",
+            caption: "First playable area with destructible objects",
+          },
+          {
+            type: "image",
+            src: "image/Adventure3D-Map.jpg",
+            alt: "World Map",
+            caption: "Map sketch of the first explorable area",
+          },
+          {
             type: "youtube",
             src: "https://www.youtube.com/watch?v=kUXZseB1Jj8",
             thumbnail: "https://img.youtube.com/vi/kUXZseB1Jj8/hqdefault.jpg",
@@ -89,18 +101,6 @@ const adventure3DData = {
             thumbnail: "https://img.youtube.com/vi/3Ugd34tAWsg/hqdefault.jpg",
             alt: "Devlog 2",
             caption: "Devlog 2 - Destructible objects and environmental design",
-          },
-          {
-            type: "image",
-            src: "image/Adventure3D-Screenshot-2.png",
-            alt: "Screenshot 2",
-            caption: "First playable area with destructible objects",
-          },
-          {
-            type: "image",
-            src: "image/Adventure3D-Map.jpg",
-            alt: "World Map",
-            caption: "Map sketch of the first explorable area",
           },
         ],
       } as MediaBlockData,

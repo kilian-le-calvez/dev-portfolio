@@ -58,11 +58,6 @@ const test3DData = {
       data: {
         items: [
           {
-            type: "youtube",
-            src: "https://www.youtube.com/watch?v=XEjImOYYLLY",
-            alt: "Test 3D Video",
-          },
-          {
             type: "image",
             src: "image/Test3D-Screenshot-1.png",
             alt: "Test 3D Image-1",
@@ -71,6 +66,11 @@ const test3DData = {
             type: "image",
             src: "image/Test3D-Screenshot-2.png",
             alt: "Test 3D Image-2",
+          },
+          {
+            type: "youtube",
+            src: "https://www.youtube.com/watch?v=XEjImOYYLLY",
+            alt: "Test 3D Video",
           },
         ],
       } as MediaBlockData,
