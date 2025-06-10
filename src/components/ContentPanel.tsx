@@ -4,20 +4,15 @@ import React from "react";
 
 interface ContentPanelProps {
   data: TimelineData;
-  isVisible: boolean;
 }
 
-export const ContentPanel = ({ data, isVisible }: ContentPanelProps) => {
+export const ContentPanel = ({ data }: ContentPanelProps) => {
   return (
-    <div
-      className={`h-full transition-all duration-500 ${
-        isVisible ? "opacity-100 translate-x-0" : "opacity-50 translate-x-4"
-      }`}
-    >
+    <div className={`h-full transition-all duration-500`}>
       <div className="h-full overflow-y-auto p-8">
         <div className="max-w-4xl">
           {/* Header */}
-          <div className="mb-12 animate-slide-in-left">
+          <div className="mb-12 animate-fade-in">
             <div className="text-sm font-mono text-neon-blue mb-2 neon-text">
               {data.year}
             </div>
@@ -32,7 +27,7 @@ export const ContentPanel = ({ data, isVisible }: ContentPanelProps) => {
             {data.content.map((block, index) => (
               <div
                 key={block.id}
-                className={`animate-slide-in-right`}
+                className={`animate-fade-in`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <ContentBlock block={block} />

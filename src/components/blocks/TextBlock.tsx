@@ -1,6 +1,6 @@
 import React from "react";
 
-interface TextBlockData {
+export interface TextBlockData {
   title?: string;
   content: string;
   highlight?: boolean;

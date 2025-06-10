@@ -1,8 +1,8 @@
 import React from "react";
 
-interface ProjectBlockData {
+export interface ProjectBlockData {
   title: string;
-  description: string;
+  description: string[];
   technologies: string[];
   image?: string;
   status: "completed" | "in-progress" | "planned";
@@ -55,7 +55,11 @@ export const ProjectBlock = ({ data }: ProjectBlockProps) => {
       )}
 
       <p className="text-muted-foreground leading-relaxed">
-        {data.description}
+        {data.description.map((line, index) => (
+          <span key={index} className="block mb-2">
+            {line}
+          </span>
+        ))}
       </p>
 
       {data.highlights && data.highlights.length > 0 && (

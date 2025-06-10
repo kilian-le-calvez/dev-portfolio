@@ -1,6 +1,7 @@
 import { LinksBlock } from "./blocks/LinksBlock";
-import { MediaBlock } from "./blocks/MediaBlock";
+import { MediaBlock } from "./blocks/MediaBlock/MediaBlock";
 import { ProjectBlock } from "./blocks/ProjectBlock";
+import { SeparatorBlock } from "./blocks/SeparatorBlock";
 import { SkillsBlock } from "./blocks/SkillsBlock";
 import { TextBlock } from "./blocks/TextBlock";
 import { ContentBlock as ContentBlockType } from "./Timeline";
@@ -23,6 +24,8 @@ export const ContentBlock = ({ block }: ContentBlockProps) => {
         return <ProjectBlock data={block.data} />;
       case "skills":
         return <SkillsBlock data={block.data} />;
+      case "separator":
+        return <SeparatorBlock />;
       default:
         return null;
     }

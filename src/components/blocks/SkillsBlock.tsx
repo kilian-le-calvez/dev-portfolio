@@ -2,11 +2,11 @@ import React from "react";
 
 interface Skill {
   name: string;
-  level: number; // 0-100
+  difficulty: number; // 0 (easy) to 100 (hard)
   category: string;
 }
 
-interface SkillsBlockData {
+export interface SkillsBlockData {
   title?: string;
   skills: Skill[];
 }
@@ -27,11 +27,11 @@ export const SkillsBlock = ({ data }: SkillsBlockProps) => {
     {} as Record<string, Skill[]>
   );
 
-  const getSkillColor = (level: number) => {
-    if (level >= 80) return "bg-neon-green";
-    if (level >= 60) return "bg-neon-blue";
-    if (level >= 40) return "bg-neon-purple";
-    return "bg-muted";
+  const getSkillColor = (difficulty: number) => {
+    if (difficulty >= 80) return "bg-red-500"; // very hard
+    if (difficulty >= 60) return "bg-orange-500"; // hard
+    if (difficulty >= 40) return "bg-yellow-500"; // moderate
+    return "bg-green-500"; // easy
   };
 
   return (
@@ -53,16 +53,16 @@ export const SkillsBlock = ({ data }: SkillsBlockProps) => {
                       {skill.name}
                     </span>
                     <span className="text-xs text-muted-foreground">
-                      {skill.level}%
+                      Difficulty: {skill.difficulty}%
                     </span>
                   </div>
 
                   <div className="h-2 bg-muted/30 rounded-full overflow-hidden">
                     <div
                       className={`h-full transition-all duration-1000 ease-out ${getSkillColor(
-                        skill.level
+                        skill.difficulty
                       )}`}
-                      style={{ width: `${skill.level}%` }}
+                      style={{ width: `${skill.difficulty}%` }}
                     />
                   </div>
                 </div>
