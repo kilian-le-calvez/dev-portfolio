@@ -1,10 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
-import { Drawer } from "./Drawer"; // Replace with your actual Drawer component path
+import { Drawer } from "./Drawer";
+import { useLocale } from "./context/LocaleContext";
+
+const locales = [
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "en", label: "English", flag: "🇬🇧" },
+];
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const { locale, changeLocale } = useLocale();
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        langDropdownOpen &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setLangDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [langDropdownOpen]);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-background shadow-md">
@@ -13,15 +38,50 @@ export const Navbar = () => {
           Kilian Le Calvez : Portfolio
         </Link>
 
-        <button
-          onClick={() => setIsOpen(true)}
-          className="p-2 rounded-md hover:bg-muted"
-        >
-          <Menu className="w-5 h-5" />
-        </button>
+        <div className="flex items-center space-x-4 relative">
+          {/* Language Selector */}
+          <div ref={dropdownRef} className="relative">
+            <button
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              className="flex items-center justify-center w-8 h-8 rounded-md hover:bg-muted text-xl"
+              aria-label="Select language"
+              type="button"
+            >
+              {locales.find((l) => l.code === locale)?.flag}
+            </button>
+
+            {langDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-24 bg-background border border-muted rounded-md shadow-lg z-50">
+                {locales.map(({ code, label, flag }) => (
+                  <button
+                    key={code}
+                    onClick={() => changeLocale(code as "fr" | "en")}
+                    className={`flex items-center space-x-2 w-full px-3 py-2 hover:bg-muted ${
+                      locale === code ? "font-bold" : ""
+                    }`}
+                    type="button"
+                  >
+                    <span className="text-xl">{flag}</span>
+                    <span className="text-sm">{label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Drawer button */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="p-2 rounded-md hover:bg-muted"
+            aria-label="Open menu"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        </div>
       </nav>
 
       <Drawer open={isOpen} onClose={() => setIsOpen(false)}>
+        {/* Drawer content unchanged */}
         <div className="flex items-center space-x-3 mb-4">
           <img
             src="image/photo-profile.jpeg"
