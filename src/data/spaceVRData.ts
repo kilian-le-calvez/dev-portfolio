@@ -2,14 +2,15 @@ import { MediaBlockData } from "../components/blocks/MediaBlock/MediaBlock";
 import { ProjectBlockData } from "../components/blocks/ProjectBlock";
 import { SkillsBlockData } from "../components/blocks/SkillsBlock";
 import { TextBlockData } from "../components/blocks/TextBlock";
-import { TimelineData } from "../components/Timeline";
+import { TimelineData } from "../components/timeline/Timeline";
 
 const spaceVRData = {
   id: "February-July2025",
-  year: "February-July 2025",
-  title: "SpaceVR Project",
+  year: "S1 2025",
+  title: "Space VR",
   subtitle: "VR Survival Game in Space",
   status: "current",
+  thumbnail: "image/SpaceVR-Screenshot-1.png",
   content: [
     {
       id: "project-February-July2025",

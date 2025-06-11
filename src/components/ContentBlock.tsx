@@ -4,7 +4,7 @@ import { ProjectBlock } from "./blocks/ProjectBlock";
 import { SeparatorBlock } from "./blocks/SeparatorBlock";
 import { SkillsBlock } from "./blocks/SkillsBlock";
 import { TextBlock } from "./blocks/TextBlock";
-import { ContentBlock as ContentBlockType } from "./Timeline";
+import { ContentBlock as ContentBlockType } from "./timeline/Timeline";
 import React from "react";
 
 interface ContentBlockProps {

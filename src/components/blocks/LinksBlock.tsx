@@ -4,10 +4,11 @@ interface LinkItem {
   title: string;
   url: string;
   description?: string;
-  type?: "github" | "demo" | "download" | "external";
+  type?: "github" | "demo" | "download" | "external" | "itchio";
+  itchioEmbed?: React.ReactNode; // Now allows JSX
 }
 
-interface LinksBlockData {
+export interface LinksBlockData {
   title?: string;
   links: LinkItem[];
 }
@@ -25,6 +26,8 @@ export const LinksBlock = ({ data }: LinksBlockProps) => {
         return "border-neon-blue hover:bg-neon-blue/10 hover:text-neon-blue";
       case "download":
         return "border-neon-purple hover:bg-neon-purple/10 hover:text-neon-purple";
+      case "itchio":
+        return "border-neon-pink hover:bg-neon-pink/10 hover:text-neon-pink";
       default:
         return "border-muted hover:bg-white/5 hover:text-foreground";
     }
@@ -32,12 +35,20 @@ export const LinksBlock = ({ data }: LinksBlockProps) => {
 
   return (
     <div className="space-y-4">
-      {data.title && (
+      {data?.title && (
         <h3 className="text-2xl font-bold text-foreground">{data.title}</h3>
       )}
 
-      <div className="grid gap-4 md:grid-cols-2">
-        {data.links.map((link, index) => (
+      {data?.links.map((link, index) => {
+        if (link.type === "itchio" && link.itchioEmbed) {
+          return (
+            <div key={index} className="rounded-lg w-full flex justify-center">
+              {link.itchioEmbed}
+            </div>
+          );
+        }
+
+        return (
           <a
             key={index}
             href={link.url}
@@ -48,7 +59,6 @@ export const LinksBlock = ({ data }: LinksBlockProps) => {
             )}`}
           >
             <div className="flex items-center gap-3">
-              {/* <Link className="w-5 h-5 flex-shrink-0" /> */}
               <div>
                 <h4 className="font-semibold">{link.title}</h4>
                 {link.description && (
@@ -59,8 +69,8 @@ export const LinksBlock = ({ data }: LinksBlockProps) => {
               </div>
             </div>
           </a>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { MediaBlockData } from "../components/blocks/MediaBlock/MediaBlock";
 import { ProjectBlockData } from "../components/blocks/ProjectBlock";
 import { SkillsBlockData } from "../components/blocks/SkillsBlock";
 import { TextBlockData } from "../components/blocks/TextBlock";
-import { TimelineData } from "../components/Timeline";
+import { TimelineData } from "../components/timeline/Timeline";
 
 const part240123 = [
   {
@@ -298,10 +298,11 @@ const part290123 = [
 // You can now compose the full content like this:
 const discoverWeek2DData = {
   id: "January2023",
-  year: "January 2023",
+  year: "S1 2023",
   title: "Discover Week 2D",
   subtitle: "A One-Week Deep Dive into 2D Game Development",
   status: "completed",
+  thumbnail: "image/29-01-23-Screenshot-1.png",
   content: [
     {
       id: "text-January2023-24-01-23",

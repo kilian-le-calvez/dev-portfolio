@@ -2,14 +2,15 @@ import { MediaBlockData } from "../components/blocks/MediaBlock/MediaBlock";
 import { ProjectBlockData } from "../components/blocks/ProjectBlock";
 import { SkillsBlockData } from "../components/blocks/SkillsBlock";
 import { TextBlockData } from "../components/blocks/TextBlock";
-import { TimelineData } from "../components/Timeline";
+import { TimelineData } from "../components/timeline/Timeline";
 
 const creationOfMoonARData = {
   id: "October-January2024-2025-MoonAR",
-  year: "October-January 2024-2025",
+  year: "S2 2024",
   title: "Creation of Moon AR",
   subtitle: "Educational AR Experience",
   status: "completed",
+  thumbnail: "image/AR-CreationOfMoon-Screenshot-3.jpeg",
   content: [
     {
       id: "project-October-January2024-2025-MoonAR",

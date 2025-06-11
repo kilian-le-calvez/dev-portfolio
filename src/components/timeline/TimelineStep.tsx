@@ -1,6 +1,7 @@
 import React from "react";
 import { TimelineData } from "./Timeline";
 import { Check, Loader2, Clock } from "lucide-react";
+import TimelineStepContent from "./TimelineStepContent";
 
 interface TimelineStepProps {
   data: TimelineData;
@@ -60,53 +61,8 @@ export const TimelineStep = ({
         {getStatusIcon()}
       </div>
 
-      {/* Content Card */}
-      <div
-        className={`
-          p-6 rounded-lg glass transition-all duration-500
-          ${isActive ? "neon-glow transform" : "hover:bg-white/5"}
-          ml-0 md:ml-20
-        `}
-      >
-        <div
-          className={`
-            text-sm font-mono mb-2 transition-colors duration-300
-            ${isActive ? "text-neon-blue neon-text" : "text-muted-foreground"}
-          `}
-        >
-          {data.year}
-        </div>
-
-        <h3
-          className={`
-            text-xl font-bold mb-1 transition-colors duration-300
-            ${isActive ? "text-foreground" : "text-muted-foreground"}
-          `}
-        >
-          {data.title}
-        </h3>
-
-        <p
-          className={`
-            text-sm transition-colors duration-300
-            ${isActive ? "text-foreground/80" : "text-muted-foreground/60"}
-          `}
-        >
-          {data.subtitle}
-        </p>
-
-        {/* Visual indicator */}
-        <div
-          className={`
-            mt-4 h-1 rounded-full transition-all duration-500
-            ${
-              isActive
-                ? "bg-gradient-to-r from-neon-blue to-neon-purple w-full"
-                : "bg-muted w-0 group-hover:w-1/3"
-            }
-          `}
-        />
-      </div>
+      {/* Step Content */}
+      <TimelineStepContent data={data} isActive={isActive} />
     </div>
   );
 };

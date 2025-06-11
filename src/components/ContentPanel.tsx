@@ -1,5 +1,5 @@
 import { ContentBlock } from "./ContentBlock";
-import { TimelineData } from "./Timeline";
+import { TimelineData } from "./timeline/Timeline";
 import React from "react";
 
 interface ContentPanelProps {

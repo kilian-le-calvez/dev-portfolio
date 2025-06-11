@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
+import { ContentPanel } from "../ContentPanel";
 import { TimelineStep } from "./TimelineStep";
-import { ContentPanel } from "./ContentPanel";
 
 export interface TimelineData {
   id: string;
@@ -10,6 +10,7 @@ export interface TimelineData {
   subtitle: string;
   content: ContentBlock[];
   status: "completed" | "current" | "future";
+  thumbnail?: string;
 }
 
 export interface ContentBlock {
@@ -72,12 +73,13 @@ export const Timeline = ({ data }: TimelineProps) => {
         {/* Timeline Navigation */}
         <div
           id="timeline-container"
-          className="hide-scrollbar w-full md:w-1/3 h-60 md:h-full overflow-x-auto md:overflow-y-auto scroll-snap-x md:scroll-snap-y flex md:block hide-scrollbar relative z-10"
+          className="hide-scrollbar w-full md:w-1/3 h-60 md:h-full overflow-x-auto md:overflow-y-auto scroll-snap-x md:scroll-snap-y flex md:block relative z-10 scroll-py-20 md:scroll-pt-32"
         >
           <div className="py-20 px-8">
             <div className="relative">
               {/* Timeline Line */}
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-neon-blue via-neon-purple to-neon-green hidden md:block" />
+
               {data.map((item, index) => (
                 <div
                   key={item.id}

@@ -2,14 +2,15 @@ import { MediaBlockData } from "../components/blocks/MediaBlock/MediaBlock";
 import { ProjectBlockData } from "../components/blocks/ProjectBlock";
 import { SkillsBlockData } from "../components/blocks/SkillsBlock";
 import { TextBlockData } from "../components/blocks/TextBlock";
-import { TimelineData } from "../components/Timeline";
+import { TimelineData } from "../components/timeline/Timeline";
 
 const test3DData = {
   id: "July2023",
-  year: "July 2023",
+  year: "S2 2023",
   title: "First 3D Project",
   subtitle: "Exploration of 3D",
   status: "completed",
+  thumbnail: "image/Test3D-Screenshot-1.png",
   content: [
     {
       id: "project-July2023",

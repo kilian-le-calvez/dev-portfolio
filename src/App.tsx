@@ -1,5 +1,5 @@
 import React from "react";
-import { Timeline } from "./components/Timeline";
+import { Timeline } from "./components/timeline/Timeline";
 import portfolioData from "./portfolioData";
 
 function App() {

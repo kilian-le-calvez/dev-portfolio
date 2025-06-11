@@ -1,6 +1,6 @@
 import { Video, Image } from "lucide-react";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import YouTube, { YouTubeEvent, YouTubeProps } from "react-youtube";
+import YouTube, { YouTubeEvent } from "react-youtube";
 
 function extractYouTubeId(url: string) {
   const regExp =
@@ -18,6 +18,7 @@ export interface MediaItem {
 }
 
 export interface MediaBlockData {
+  customNextInTime?: number;
   items: MediaItem[];
 }
 
@@ -25,10 +26,14 @@ interface MediaBlockProps {
   data: MediaBlockData;
 }
 
+const COUNTDOWN_SECONDS = 7;
+
 export const MediaBlock = ({ data }: MediaBlockProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(
+    data?.customNextInTime ?? COUNTDOWN_SECONDS
+  );
   const [autoplay, setAutoplay] = useState(() => {
     // Read autoplay from localStorage, default true if nothing saved
     const saved = localStorage.getItem("mediaBlockAutoplay");
@@ -76,14 +81,14 @@ export const MediaBlock = ({ data }: MediaBlockProps) => {
   // Clear timers on index change or unmount
   useEffect(() => {
     setIsLoaded(false);
-    setCountdown(10);
+    setCountdown(data?.customNextInTime ?? COUNTDOWN_SECONDS);
     if (imageTimeoutRef.current) {
       clearTimeout(imageTimeoutRef.current);
     }
     if (countdownIntervalRef.current) {
       clearInterval(countdownIntervalRef.current);
     }
-  }, [currentIndex]);
+  }, [currentIndex, data?.customNextInTime]);
 
   // Auto-advance and countdown for images — only if autoplay enabled
   useEffect(() => {
@@ -100,9 +105,12 @@ export const MediaBlock = ({ data }: MediaBlockProps) => {
         });
       }, 1000);
 
-      imageTimeoutRef.current = setTimeout(() => {
-        goNext();
-      }, 10000);
+      imageTimeoutRef.current = setTimeout(
+        () => {
+          goNext();
+        },
+        (data?.customNextInTime ?? COUNTDOWN_SECONDS) * 1000
+      );
 
       return () => {
         if (imageTimeoutRef.current) clearTimeout(imageTimeoutRef.current);
@@ -110,7 +118,7 @@ export const MediaBlock = ({ data }: MediaBlockProps) => {
           clearInterval(countdownIntervalRef.current);
       };
     }
-  }, [current, autoplay, isVisible, goNext]);
+  }, [current, autoplay, isVisible, goNext, data?.customNextInTime]);
 
   // YouTube player options
   const youtubeOpts = {
@@ -258,39 +266,60 @@ export const MediaBlock = ({ data }: MediaBlockProps) => {
       )}
       {/* Optional: dots indicator */}
       {data.items.length > 1 && (
-        <div className="flex justify-center gap-3 mt-2">
-          {data.items.map((item, i) => {
-            const isActive = i === currentIndex;
+        <div className="flex justify-center gap-2 mt-2 flex-wrap">
+          {(() => {
+            const dots: React.ReactNode[] = [];
+            const total = data.items.length;
+            const range = 5;
+            const start = Math.max(0, currentIndex - range);
+            const end = Math.min(total - 1, currentIndex + range);
 
-            let Icon;
-            switch (item.type) {
-              case "image":
-                Icon = Image;
-                break;
-              default:
-                Icon = Video; // fallback icon
+            if (start > 0) {
+              dots.push(<span key="start-ellipsis">…</span>);
             }
 
-            return (
-              <button
-                key={i}
-                onClick={() => {
-                  if (imageTimeoutRef.current)
-                    clearTimeout(imageTimeoutRef.current);
-                  if (countdownIntervalRef.current)
-                    clearInterval(countdownIntervalRef.current);
-                  setCurrentIndex(i);
-                }}
-                className={`transition-all duration-200 ${
-                  isActive
-                    ? "text-neon-blue scale-110"
-                    : "text-muted-foreground hover:text-foreground opacity-60"
-                }`}
-              >
-                <Icon className="w-5 h-5" />
-              </button>
-            );
-          })}
+            for (let i = start; i <= end; i++) {
+              const isActive = i === currentIndex;
+              let Icon;
+              switch (data.items[i].type) {
+                case "image":
+                  Icon = Image;
+                  break;
+                default:
+                  Icon = Video;
+              }
+
+              dots.push(
+                <button
+                  key={i}
+                  onClick={() => {
+                    if (imageTimeoutRef.current)
+                      clearTimeout(imageTimeoutRef.current);
+                    if (countdownIntervalRef.current)
+                      clearInterval(countdownIntervalRef.current);
+                    setCurrentIndex(i);
+                  }}
+                  className={`transition-all duration-200 ${
+                    isActive
+                      ? "text-neon-blue scale-110"
+                      : "text-muted-foreground hover:text-foreground opacity-60"
+                  }`}
+                >
+                  <Icon className="w-5 h-5" />
+                </button>
+              );
+            }
+
+            if (end < total - 1) {
+              dots.push(
+                <span className="text-muted-foreground px-1 select-none">
+                  …
+                </span>
+              );
+            }
+
+            return dots;
+          })()}
         </div>
       )}
     </div>

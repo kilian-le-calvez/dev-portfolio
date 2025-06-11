@@ -2,14 +2,15 @@ import { MediaBlockData } from "../components/blocks/MediaBlock/MediaBlock";
 import { ProjectBlockData } from "../components/blocks/ProjectBlock";
 import { SkillsBlockData } from "../components/blocks/SkillsBlock";
 import { TextBlockData } from "../components/blocks/TextBlock";
-import { TimelineData } from "../components/Timeline";
+import { TimelineData } from "../components/timeline/Timeline";
 
 const adventure3DData = {
   id: "January-?2025",
-  year: "January-? 2025",
-  title: "Adventure3D",
+  year: "S1-? 2025",
+  title: "Adventure 3D",
   subtitle: "Zelda-inspired World Building",
   status: "future",
+  thumbnail: "image/Adventure3D-Screenshot-1.png",
   content: [
     {
       id: "project-January-?2025",
