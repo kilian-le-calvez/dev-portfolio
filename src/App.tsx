@@ -1,11 +1,16 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import { Timeline } from "./components/timeline/Timeline";
 import portfolioData from "./portfolioData";
+import ProfilePage from "./components/profile/ProfilePage";
 
 function App() {
   return (
     <div className="min-h-screen bg-background">
-      <Timeline data={portfolioData} />
+      <Routes>
+        <Route path="/" element={<Timeline data={portfolioData} />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Routes>
     </div>
   );
 }

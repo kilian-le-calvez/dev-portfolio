@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { ContentPanel } from "../ContentPanel";
 import { TimelineStep } from "./TimelineStep";
+import { Navbar } from "../Navbar";
 
 export interface TimelineData {
   id: string;
@@ -63,6 +64,7 @@ export const Timeline = ({ data }: TimelineProps) => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
+      <Navbar></Navbar>
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-neon-blue/10 rounded-full blur-3xl animate-pulse-neon" />
