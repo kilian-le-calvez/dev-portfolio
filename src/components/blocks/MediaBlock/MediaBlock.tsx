@@ -1,6 +1,8 @@
 import { Video, Image } from "lucide-react";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import YouTube, { YouTubeEvent } from "react-youtube";
+import { useLocale } from "../../context/LocaleContext";
+import { TranslationString } from "../Translation";
 
 function extractYouTubeId(url: string) {
   const regExp =
@@ -13,7 +15,7 @@ export interface MediaItem {
   type: "image" | "video" | "youtube";
   src: string; // For YouTube, this will be the video ID or full URL
   alt?: string;
-  caption?: string;
+  caption?: TranslationString;
   thumbnail?: string;
 }
 
@@ -46,6 +48,8 @@ export const MediaBlock = ({ data }: MediaBlockProps) => {
   const countdownIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const current = data.items[currentIndex];
+
+  const { locale } = useLocale();
 
   const goNext = useCallback(() => {
     setCurrentIndex((i) => (i + 1) % data.items.length);
@@ -151,7 +155,7 @@ export const MediaBlock = ({ data }: MediaBlockProps) => {
           <>
             <img
               src={current.src}
-              alt={current.alt || ""}
+              alt={current.alt ? current.alt : "Img media content"}
               className={`w-full h-auto max-h-screen object-contain transition-all duration-500 ${
                 isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
               }`}
@@ -196,7 +200,7 @@ export const MediaBlock = ({ data }: MediaBlockProps) => {
         {current.type === "video" && (
           <video
             src={current.src}
-            poster={current.thumbnail}
+            poster={current.thumbnail ? current.thumbnail : ""}
             controls
             className="w-full h-auto max-h-screen object-contain rounded-lg"
             onLoadedData={() => setIsLoaded(true)}
@@ -261,7 +265,7 @@ export const MediaBlock = ({ data }: MediaBlockProps) => {
       </div>
       {current.caption && (
         <p className="text-sm text-muted-foreground italic text-center">
-          {current.caption}
+          {current.caption[locale] || "No caption available."}
         </p>
       )}
       {/* Optional: dots indicator */}

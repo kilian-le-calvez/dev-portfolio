@@ -1,12 +1,15 @@
 import { ContentBlock } from "./ContentBlock";
 import { TimelineData } from "./timeline/Timeline";
 import React from "react";
+import { useLocale } from "./context/LocaleContext";
 
 interface ContentPanelProps {
   data: TimelineData;
 }
 
 export const ContentPanel = ({ data }: ContentPanelProps) => {
+  const { locale } = useLocale();
+
   return (
     <div className={`h-full transition-all duration-500`}>
       <div className="h-full overflow-y-auto p-8">
@@ -19,7 +22,9 @@ export const ContentPanel = ({ data }: ContentPanelProps) => {
             <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">
               {data.title}
             </h1>
-            <p className="text-xl text-muted-foreground">{data.subtitle}</p>
+            <p className="text-xl text-muted-foreground">
+              {data.subtitle[locale]}
+            </p>
           </div>
 
           {/* Content Blocks */}

@@ -1,13 +1,15 @@
 import React from "react";
+import { useLocale } from "../context/LocaleContext";
+import { TranslationString } from "./Translation";
 
 interface Skill {
-  name: string;
+  name: TranslationString;
   difficulty: number; // 0 (easy) to 100 (hard)
-  category: string;
+  category: TranslationString;
 }
 
 export interface SkillsBlockData {
-  title?: string;
+  title?: TranslationString;
   skills: Skill[];
 }
 
@@ -16,12 +18,14 @@ interface SkillsBlockProps {
 }
 
 export const SkillsBlock = ({ data }: SkillsBlockProps) => {
+  const { locale } = useLocale();
+
   const groupedSkills = data.skills.reduce(
     (acc, skill) => {
-      if (!acc[skill.category]) {
-        acc[skill.category] = [];
+      if (!acc[skill.category[locale]]) {
+        acc[skill.category[locale]] = [];
       }
-      acc[skill.category].push(skill);
+      acc[skill.category[locale]].push(skill);
       return acc;
     },
     {} as Record<string, Skill[]>
@@ -37,7 +41,9 @@ export const SkillsBlock = ({ data }: SkillsBlockProps) => {
   return (
     <div className="space-y-6">
       {data.title && (
-        <h3 className="text-2xl font-bold text-foreground">{data.title}</h3>
+        <h3 className="text-2xl font-bold text-foreground">
+          {data.title[locale]}
+        </h3>
       )}
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -50,7 +56,7 @@ export const SkillsBlock = ({ data }: SkillsBlockProps) => {
                 <div key={index} className="space-y-2">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-foreground">
-                      {skill.name}
+                      {skill.name[locale]}
                     </span>
                     <span className="text-xs text-muted-foreground">
                       Difficulty: {skill.difficulty}%

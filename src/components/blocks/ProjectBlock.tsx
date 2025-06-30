@@ -1,12 +1,14 @@
 import React from "react";
+import { useLocale } from "../context/LocaleContext";
+import { TranslationString } from "./Translation";
 
 export interface ProjectBlockData {
-  title: string;
-  description: string[];
+  title: TranslationString;
+  description: TranslationString[];
   technologies: string[];
   image?: string;
   status: "completed" | "in-progress" | "planned";
-  highlights?: string[];
+  highlights?: TranslationString[];
 }
 
 interface ProjectBlockProps {
@@ -14,6 +16,8 @@ interface ProjectBlockProps {
 }
 
 export const ProjectBlock = ({ data }: ProjectBlockProps) => {
+  const { locale } = useLocale();
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed":
@@ -32,7 +36,7 @@ export const ProjectBlock = ({ data }: ProjectBlockProps) => {
       <div className="flex items-start justify-between">
         <div>
           <h3 className="text-2xl font-bold text-foreground mb-2">
-            {data.title}
+            {data.title[locale]}
           </h3>
           <span
             className={`inline-block px-3 py-1 rounded-full text-xs font-semibold border ${getStatusColor(
@@ -48,7 +52,7 @@ export const ProjectBlock = ({ data }: ProjectBlockProps) => {
         <div className="relative rounded-lg overflow-hidden glass">
           <img
             src={data.image}
-            alt={data.title}
+            alt={data.title[locale]}
             className="w-full h-48 object-cover"
           />
         </div>
@@ -57,7 +61,7 @@ export const ProjectBlock = ({ data }: ProjectBlockProps) => {
       <p className="text-muted-foreground leading-relaxed">
         {data.description.map((line, index) => (
           <span key={index} className="block mb-2">
-            {line}
+            {line[locale]}
           </span>
         ))}
       </p>
@@ -74,7 +78,7 @@ export const ProjectBlock = ({ data }: ProjectBlockProps) => {
                 className="text-sm text-muted-foreground flex items-start gap-2"
               >
                 <span className="w-1.5 h-1.5 bg-neon-blue rounded-full mt-2 flex-shrink-0" />
-                {highlight}
+                {highlight[locale]}
               </li>
             ))}
           </ul>

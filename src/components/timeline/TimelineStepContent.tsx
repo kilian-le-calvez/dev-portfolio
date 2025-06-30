@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocale } from "../context/LocaleContext";
 import { TimelineData } from "./Timeline";
 
 interface TimelineStepContentProps {
@@ -7,6 +8,8 @@ interface TimelineStepContentProps {
 }
 
 function TimelineStepContent({ data, isActive }: TimelineStepContentProps) {
+  const { locale } = useLocale();
+
   return (
     <div
       className={`
@@ -41,7 +44,7 @@ function TimelineStepContent({ data, isActive }: TimelineStepContentProps) {
             ${isActive ? "text-foreground/80" : "text-muted-foreground/60"}
           `}
         >
-          {data.subtitle}
+          {data.subtitle[locale]}
         </p>
 
         <div

@@ -51,7 +51,7 @@ export const Navbar = () => {
             </button>
 
             {langDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-24 bg-background border border-muted rounded-md shadow-lg z-50">
+              <div className="absolute right-0 mt-2 bg-background border border-muted rounded-md shadow-lg z-50">
                 {locales.map(({ code, label, flag }) => (
                   <button
                     key={code}
@@ -90,7 +90,9 @@ export const Navbar = () => {
           />
           <div>
             <p className="font-semibold text-foreground">Kilian Le Calvez</p>
-            <p className="text-sm text-muted-foreground">Developer</p>
+            <p className="text-sm text-muted-foreground">
+              XR / VR / Game Developper
+            </p>
           </div>
         </div>
 
@@ -109,8 +111,17 @@ export const Navbar = () => {
           >
             Profile
           </Link>
+          <a
+            href="/CV_XR_VR_GameDev_Kilian_Le_Calvez_2025.pdf"
+            download
+            className="block text-sm font-medium text-foreground hover:underline"
+          >
+            {"Download CV"}
+          </a>
+          <div className="border-t border-muted my-4" />
         </nav>
 
+        <div />
         <div className="text-sm space-y-1">
           <a
             href="mailto:kilianlecalvez.dev@gmail.com"

@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Navbar } from "../Navbar";
 import { translations } from "./ProfilePage.translate";
 import { useLocale } from "../context/LocaleContext";
 
 const ProfilePage = () => {
   const { locale } = useLocale();
-
-  // Optional: sync locale changes to localStorage if you want to add a toggle later
-  useEffect(() => {
-    localStorage.setItem("locale", locale);
-  }, [locale]);
 
   const t = translations[locale];
 
@@ -38,6 +33,15 @@ const ProfilePage = () => {
       </div>
 
       <section className="mb-10 glass p-6 rounded-2xl shadow-lg border border-muted/30">
+        <h2 className="text-xl font-semibold mb-4 neon-text-neon-green">
+          {t.aboutTitle}
+        </h2>
+        <p className="text-sm text-muted-foreground leading-relaxed font-sans">
+          {t.aboutDescription}
+        </p>
+      </section>
+
+      <section className="glass p-6 rounded-2xl shadow-lg border border-muted/30">
         <h2 className="text-xl font-semibold mb-4 neon-text-neon-purple">
           {t.contactTitle}
         </h2>
@@ -79,15 +83,6 @@ const ProfilePage = () => {
             </a>
           </li>
         </ul>
-      </section>
-
-      <section className="glass p-6 rounded-2xl shadow-lg border border-muted/30">
-        <h2 className="text-xl font-semibold mb-4 neon-text-neon-green">
-          {t.aboutTitle}
-        </h2>
-        <p className="text-sm text-muted-foreground leading-relaxed font-sans">
-          {t.aboutDescription}
-        </p>
       </section>
     </main>
   );

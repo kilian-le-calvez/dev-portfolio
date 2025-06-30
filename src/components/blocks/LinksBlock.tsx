@@ -1,15 +1,17 @@
 import React from "react";
+import { useLocale } from "../context/LocaleContext";
+import { TranslationString } from "./Translation";
 
 interface LinkItem {
-  title: string;
+  title: TranslationString;
   url: string;
-  description?: string;
+  description?: TranslationString;
   type?: "github" | "demo" | "download" | "external" | "itchio";
   itchioEmbed?: React.ReactNode; // Now allows JSX
 }
 
 export interface LinksBlockData {
-  title?: string;
+  title?: TranslationString;
   links: LinkItem[];
 }
 
@@ -18,6 +20,8 @@ interface LinksBlockProps {
 }
 
 export const LinksBlock = ({ data }: LinksBlockProps) => {
+  const { locale } = useLocale();
+
   const getLinkStyles = (type?: string) => {
     switch (type) {
       case "github":
@@ -36,7 +40,9 @@ export const LinksBlock = ({ data }: LinksBlockProps) => {
   return (
     <div className="space-y-4">
       {data?.title && (
-        <h3 className="text-2xl font-bold text-foreground">{data.title}</h3>
+        <h3 className="text-2xl font-bold text-foreground">
+          {data.title[locale]}
+        </h3>
       )}
 
       {data?.links.map((link, index) => {
@@ -60,10 +66,10 @@ export const LinksBlock = ({ data }: LinksBlockProps) => {
           >
             <div className="flex items-center gap-3">
               <div>
-                <h4 className="font-semibold">{link.title}</h4>
+                <h4 className="font-semibold">{link.title[locale]}</h4>
                 {link.description && (
                   <p className="text-sm text-muted-foreground mt-1">
-                    {link.description}
+                    {link.description[locale]}
                   </p>
                 )}
               </div>

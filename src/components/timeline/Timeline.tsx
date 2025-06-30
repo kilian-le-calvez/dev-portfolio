@@ -3,12 +3,26 @@ import React from "react";
 import { ContentPanel } from "../ContentPanel";
 import { TimelineStep } from "./TimelineStep";
 import { Navbar } from "../Navbar";
+import { TranslationString } from "../blocks/Translation";
+import { TextBlockData } from "../blocks/TextBlock";
+import { MediaBlockData } from "../blocks/MediaBlock/MediaBlock";
+import { SkillsBlockData } from "../blocks/SkillsBlock";
+import { ProjectBlockData } from "../blocks/ProjectBlock";
+import { LinksBlockData } from "../blocks/LinksBlock";
+
+export type TypeContentBlock =
+  | "text"
+  | "media"
+  | "links"
+  | "project"
+  | "skills"
+  | "separator";
 
 export interface TimelineData {
   id: string;
   year: string;
   title: string;
-  subtitle: string;
+  subtitle: TranslationString;
   content: ContentBlock[];
   status: "completed" | "current" | "future";
   thumbnail?: string;
@@ -16,8 +30,13 @@ export interface TimelineData {
 
 export interface ContentBlock {
   id: string;
-  type: "text" | "media" | "links" | "project" | "skills" | "separator";
-  data: any;
+  type: TypeContentBlock;
+  data:
+    | TextBlockData
+    | MediaBlockData
+    | ProjectBlockData
+    | SkillsBlockData
+    | LinksBlockData;
 }
 
 interface TimelineProps {
