@@ -8,7 +8,7 @@ const spaceVRData: TimelineData = {
     en: "VR Survival Game in Space",
     fr: "Jeu de survie VR dans l'espace",
   },
-  status: "current",
+  status: "completed",
   thumbnail: "image/SpaceVR-Screenshot-1.png",
   content: [
     {
@@ -34,7 +34,7 @@ const spaceVRData: TimelineData = {
           },
         ],
         technologies: ["Unity", "C#", "Meta Quest 3", "Blender"],
-        status: "in-progress",
+        status: "completed",
         highlights: [
           {
             en: "Developing realistic VR interactions for repairing spaceship components",
@@ -104,6 +104,11 @@ const spaceVRData: TimelineData = {
       data: {
         items: [
           {
+            type: "youtube",
+            src: "https://www.youtube.com/watch?v=JeNqxFEgccM",
+            alt: "SpaceVR Demo Video",
+          },
+          {
             type: "image",
             src: "image/SpaceVR-Screenshot-1.png",
             alt: "SpaceVR Screenshot 1",
@@ -116,7 +121,7 @@ const spaceVRData: TimelineData = {
           {
             type: "youtube",
             src: "https://www.youtube.com/watch?v=i6IxhUV2ZfU",
-            alt: "SpaceVR Demo Video",
+            alt: "SpaceVR Demo Interaction Video",
           },
         ],
       },
